@@ -1,4 +1,13 @@
-create table brand
+create table users
+(
+    id serial primary key,
+    name varchar(20),
+    email varchar(50),
+    avatar_url varchar(250),
+    created_at timestamp not null
+);
+
+create table brands
 (
     id serial primary key,
     name varchar(20),
@@ -8,7 +17,7 @@ create table brand
     website varchar(250)
 );
 
-create table seller
+create table sellers
 (
     id serial primary key,
     name varchar(20),
@@ -20,24 +29,24 @@ create table seller
     created_at timestamp not null
 );
 
-create table product
+create table products
 (
     id serial primary key,
     name varchar(50),
     slug varchar(50),
     short_description varchar(50),
     full_description varchar(250),
-    seller_id integer references seller (id),
-    brand_id integer references brand (id),
+    seller_id integer references sellers (id),
+    brand_id integer references brands (id),
     status varchar(10),
     created_at timestamp not null,
     updated_at timestamp
 );
 
-create table product_detail
+create table product_details
 (
     id serial primary key,
-    product_id integer not null references product (id),
+    product_id integer not null references products (id),
     weight float,
     dimensions json,
     materials varchar(50),
@@ -47,10 +56,10 @@ create table product_detail
     additional_info jsonb
 );
 
-create table product_price
+create table product_prices
 (
     id serial primary key,
-    product_id integer not null references product (id),
+    product_id integer not null references products (id),
     base_price integer not null,
     sale_price integer,
     cost_price integer,
@@ -58,37 +67,37 @@ create table product_price
     tax_rate integer not null
 );
 
-create table category
+create table categories
 (
     id serial primary key,
     name varchar(20) not null,
     slug varchar(50),
     description varchar(50),
-    parent_id integer references category (id),
+    parent_id integer references categories (id),
     level integer not null,
     image_url varchar(250)
 );
 
-create table product_category
+create table product_categories
 (
     id serial primary key,
-    product_id integer not null references product (id),
-    category_id integer not null references category (id),
+    product_id integer not null references products (id),
+    category_id integer not null references categories (id),
     is_primary boolean not null
 );
 
-create table product_option_group
+create table product_option_groups
 (
     id serial primary key,
-    product_id integer not null references product (id),
+    product_id integer not null references products (id),
     name varchar(20),
     display_order integer not null
 );
 
-create table product_option
+create table product_options
 (
     id serial primary key,
-    option_group_id integer not null references product_option_group (id),
+    option_group_id integer not null references product_option_groups (id),
     name varchar(20),
     additional_price integer,
     sku varchar(20) not null,
@@ -96,35 +105,35 @@ create table product_option
     display_order integer not null
 );
 
-create table product_image
+create table product_images
 (
     id serial primary key,
-    product_id integer not null references product (id),
+    product_id integer not null references products (id),
     url varchar(250),
     alt_text varchar(20),
     is_primary boolean not null,
     display_order integer not null,
-    option_id integer references product_option (id)
+    option_id integer references product_options (id)
 );
 
-create table tag
+create table tags
 (
     id serial primary key,
     name varchar(20),
     slug varchar(50)
 );
 
-create table product_tag
+create table product_tags
 (
     id serial primary key,
-    product_id integer not null references product (id),
-    tag_id integer not null references tag (id)
+    product_id integer not null references products (id),
+    tag_id integer not null references tags (id)
 );
 
-create table review
+create table reviews
 (
     id serial primary key,
-    product_id integer not null references product (id),
+    product_id integer not null references products (id),
     user_id varchar(30) not null,
     rating float not null,
     title varchar(50),
