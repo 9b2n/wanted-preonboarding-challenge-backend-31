@@ -9,6 +9,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -46,6 +47,27 @@ public class Product {
     @LastModifiedDate
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @OneToOne(mappedBy = "product")
+    private ProductDetail detail;
+
+    @OneToOne(mappedBy = "product")
+    private ProductPrice priceInfo;
+
+    @OneToMany(mappedBy = "product")
+    private List<ProductImage> images;
+
+    @OneToMany(mappedBy = "product")
+    private List<ProductTag> tags;
+
+    @OneToMany(mappedBy = "product")
+    private List<ProductCategory> categories;
+
+    @OneToMany(mappedBy = "product")
+    private List<Review> reviews;
+
+    @OneToMany(mappedBy = "product")
+    private List<ProductOptionGroup> optionGroups;
 
     @Builder
     public Product(String name, String slug, String shortDescription, String fullDescription) {

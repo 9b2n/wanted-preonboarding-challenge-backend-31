@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Getter
 @NoArgsConstructor
@@ -22,6 +24,9 @@ public class ProductOptionGroup {
 
     @Column(name = "display_order")
     private int displayOrder;
+
+    @OneToMany(mappedBy = "optionGroup")
+    private List<ProductOption> options;
 
     @Builder
     public ProductOptionGroup(Product product, String name, int displayOrder) {
