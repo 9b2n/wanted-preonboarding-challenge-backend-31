@@ -2,12 +2,16 @@ spring:
   application:
     name: backend
 
+  mvc:
+    servlet:
+      path: /api
+
   jpa:
     show-sql: true
     database: postgresql
 
   datasource:
-    url: jdbc:postgresql:/localhost:5432/wanted
+    url: jdbc:postgresql://localhost:5432/wanted
     username: test
     password: test
     driver-class-name: org.postgresql.Driver
