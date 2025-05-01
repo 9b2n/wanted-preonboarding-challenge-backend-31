@@ -17,7 +17,7 @@ public class ProductListRequestDto {
     private Integer[] category;
     private Integer seller;
     private Integer brand;
-    private boolean inStock;
+    private Boolean inStock;
     private String search;
 
     @Builder
@@ -31,7 +31,7 @@ public class ProductListRequestDto {
         Integer[] category,
         Integer seller,
         Integer brand,
-        boolean inStock,
+        Boolean inStock,
         String search
     ) {
         this.page = page;
