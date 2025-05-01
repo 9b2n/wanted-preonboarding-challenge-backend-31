@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -24,7 +25,9 @@ public class Seller {
 
     @Column(name = "logo_url")
     private String logoUrl;
-    private float rating;
+
+    @Column(name = "rating", precision = 3, scale = 2)
+    private BigDecimal rating;
 
     @Column(name = "contact_email")
     private String contactEmail;
@@ -37,7 +40,7 @@ public class Seller {
     private LocalDateTime createdAt;
 
     @Builder
-    public Seller(String name, String description, String logo_url, float rating, String contactEmail, String contactPhone) {
+    public Seller(String name, String description, String logo_url, BigDecimal rating, String contactEmail, String contactPhone) {
         this.name = name;
         this.description = description;
         this.logoUrl = logo_url;

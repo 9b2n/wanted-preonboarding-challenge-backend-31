@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 @Entity
@@ -23,7 +24,8 @@ public class ProductDetail {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    private float weight;
+    @Column(name = "weight", precision = 10, scale = 2)
+    private BigDecimal weight;
 
     @Type(JsonType.class)
     private Map<String, Integer> dimensions;
@@ -46,7 +48,7 @@ public class ProductDetail {
     @Builder
     public ProductDetail(
             Product product,
-            float weight,
+            BigDecimal weight,
             Map<String, Integer> dimensions,
             String materials,
             String countryOfOrigin,

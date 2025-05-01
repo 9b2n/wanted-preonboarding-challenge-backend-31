@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Entity
 @Getter
 @NoArgsConstructor
@@ -20,8 +22,8 @@ public class ProductOption {
 
     private String name;
 
-    @Column(name = "additional_price")
-    private int additionalPrice;
+    @Column(name = "additional_price", precision = 12, scale = 2)
+    private BigDecimal additionalPrice;
 
     private String sku;
     private int stock;
@@ -30,7 +32,7 @@ public class ProductOption {
     private int displayOrder;
 
     @Builder
-    public ProductOption(String name, ProductOptionGroup optionGroup, int additionalPrice, String sku, int stock, int displayOrder) {
+    public ProductOption(String name, ProductOptionGroup optionGroup, BigDecimal additionalPrice, String sku, int stock, int displayOrder) {
         this.name = name;
         this.optionGroup = optionGroup;
         this.additionalPrice = additionalPrice;
