@@ -8,29 +8,29 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class ProductListRequestDto {
-    private int page;
-    private int perPage;
+    private Integer page;
+    private Integer perPage;
     private String sort;
     private String status;
-    private int minPrice;
-    private int maxPrice;
-    private int[] category;
-    private int seller;
-    private int brand;
+    private Integer minPrice;
+    private Integer maxPrice;
+    private Integer[] category;
+    private Integer seller;
+    private Integer brand;
     private boolean inStock;
     private String search;
 
     @Builder
     public ProductListRequestDto(
-        int page,
-        int perPage,
+        Integer page,
+        Integer perPage,
         String sort,
         String status,
-        int minPrice,
-        int maxPrice,
-        int[] category,
-        int seller,
-        int brand,
+        Integer minPrice,
+        Integer maxPrice,
+        Integer[] category,
+        Integer seller,
+        Integer brand,
         boolean inStock,
         String search
     ) {
