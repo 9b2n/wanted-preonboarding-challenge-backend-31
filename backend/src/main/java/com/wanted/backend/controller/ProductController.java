@@ -1,6 +1,7 @@
 package com.wanted.backend.controller;
 
 import com.wanted.backend.dto.ProductListDto;
+import com.wanted.backend.dto.request.ProductListRequestDto;
 import com.wanted.backend.entity.Product;
 import com.wanted.backend.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +18,8 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping(value = "/products")
-    public ResponseEntity<List<ProductListDto>> findProduct() {
-        return ResponseEntity.ok(productService.findAll());
+    public ResponseEntity<List<ProductListDto>> findProduct(ProductListRequestDto requestDto) {
+        return ResponseEntity.ok(productService.findAll(requestDto));
     }
 
     @PostMapping(value = "/products")

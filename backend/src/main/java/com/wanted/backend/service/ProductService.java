@@ -1,6 +1,7 @@
 package com.wanted.backend.service;
 
 import com.wanted.backend.dto.ProductListDto;
+import com.wanted.backend.dto.request.ProductListRequestDto;
 import com.wanted.backend.entity.Product;
 import com.wanted.backend.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,7 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
-    public List<ProductListDto> findAll() {
+    public List<ProductListDto> findAll(ProductListRequestDto requestDto) {
         List<Product> products = productRepository.findAll();
         return products.stream()
                 .map(ProductListDto::new)
