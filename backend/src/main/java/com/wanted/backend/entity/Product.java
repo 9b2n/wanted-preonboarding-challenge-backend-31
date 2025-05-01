@@ -1,5 +1,7 @@
 package com.wanted.backend.entity;
 
+import com.wanted.backend.converter.ProductStatusConverter;
+import com.wanted.backend.enums.ProductStatus;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -38,7 +40,9 @@ public class Product {
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
-    private String status;
+    @Column(name = "status")
+    @Convert(converter = ProductStatusConverter.class, attributeName = "status")
+    private ProductStatus status;
 
     @CreatedDate
     @Column(name = "created_at")
